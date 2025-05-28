@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const bcrypt = require('bcryptjs')
 const JWT = require('jsonwebtoken')
-const { string } = require("i/lib/util")
+const cookie = require('cookie')
 
 
 const userSchema = new mongoose.Schema({
@@ -56,6 +56,8 @@ userSchema.methods.getSignedToken = function(res){
       process.env.JWT_REFRESH_TOKEN,
       { expiresIn: JWT_REFRESH_EXPIRE }
     );
+
+    res.cookie(`refreshToken`,`${refreshToken}`, {maxAge:86400*7000, httpOnly:true})
 }
 
 
