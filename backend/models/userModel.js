@@ -46,6 +46,18 @@ userSchema.method.matchPassword = async function (password){
     return await bcrypt.compare(password, this.password)
 }
 
+// Sign token
+
+userSchema.methods.getSignedToken = function(res){
+    const accessToken = JWT.sign({id:this._id}, process.env.JWT_SECRET,{expiresIn:process.env.JWT_ACCESS_EXPIRE})
+
+    const refreshToken = JWT.sign(
+      { id: this._id },
+      process.env.JWT_REFRESH_TOKEN,
+      { expiresIn: JWT_REFRESH_EXPIRE }
+    );
+}
+
 
 
 const User = mongoose.model("User", userSchema)
