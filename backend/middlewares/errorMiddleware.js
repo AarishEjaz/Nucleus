@@ -1,6 +1,6 @@
 const errorResponse = require('../utils/errorResponse')
 
-const errorHandler = (err,req,res,next){
+const errorHandler = (err,req,res,next)=>{
     let err = {...err}
     err.message = err.message //isko comment kar ek check karo
 
@@ -23,7 +23,7 @@ const errorHandler = (err,req,res,next){
         })
     }
 
-    next()
+    // next()
 }
 
 module.exports= errorHandler
