@@ -1,4 +1,5 @@
 const user = require('../models/userModel')
+const errorResponse = require('../utils/errorResponse')
 exports.sendToken = async(user,statusCode, res) =>{
     const token = user.getSignedToken(res)
     res.status(statusCode).json({
@@ -12,7 +13,7 @@ exports.registerController = async () =>{
         const { username, email, password, subscription, customerId } = req.body;
         const existingEmail = user.findOne({emai:email})
         if(existingEmail){
-            return next()
+            return next(new errorResponse("Email is already registered", 500))
         }
         await user.create({
             username:username,
