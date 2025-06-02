@@ -1,4 +1,5 @@
-const user = require('../models/userModel')
+const { error } = require('console')
+const User = require('../models/userModel')
 const errorResponse = require('../utils/errorResponse')
 exports.sendToken = async(user,statusCode, res) =>{
     const token = user.getSignedToken(res)
@@ -11,7 +12,7 @@ exports.sendToken = async(user,statusCode, res) =>{
 exports.registerController = async () =>{
     try{
         const { username, email, password, subscription, customerId } = req.body;
-        const existingEmail = user.findOne({emai:email})
+        const existingEmail = User.findOne({emai:email})
         if(existingEmail){
             return next(new errorResponse("Email is already registered", 500))
         }
@@ -20,9 +21,9 @@ exports.registerController = async () =>{
             email:email,
             customerId:customerId,
             password: password,
-            subscription: subscription
 
         })
+        sendToken(user,201,res)
     }catch(error){
         console.log(error.messsage)
         next(error)
@@ -30,6 +31,17 @@ exports.registerController = async () =>{
 
 }
 
-exports.loginController = async () => {};
+exports.loginController = async () => {
+    try{
+        const {email,password} = req.body
+        const user = await User.findOne({email:email})
+        if(!email || !password){
+            return next(new errorResponse("Please provide both email and password" ))
+        }
+
+    }catch(error){
+        next(error.message)
+    }
+};
 
 exports.logoutController = async () => {};
