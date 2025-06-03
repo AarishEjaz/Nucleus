@@ -1,8 +1,8 @@
 const errorResponse = require('../utils/errorResponse')
 
 const errorHandler = (err,req,res,next)=>{
-    let err = {...err}
-    err.message = err.message //isko comment kar ek check karo
+    let error = {...err}
+    error.message = err.message //isko comment kar ek check karo
 
     if(err.name ==="castError"){
         const message = "Resource Not Found"

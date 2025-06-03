@@ -31,17 +31,37 @@ exports.registerController = async () =>{
 
 }
 
+//Login
 exports.loginController = async () => {
     try{
         const {email,password} = req.body
-        const user = await User.findOne({email:email})
+
         if(!email || !password){
             return next(new errorResponse("Please provide both email and password" ))
         }
+        const user = await User.findOne({ email: email });
+        if(!user){
+            return next(new errorResponse(""))
+        }
+
+        const isMatch = await User.matchPassword(password)
+        if(!isMatch){
+            return next( new errorResponse('Invalid Credientials'))
+        }
+        sendToken(user,200,res)
+
+
 
     }catch(error){
         next(error.message)
     }
 };
 
-exports.logoutController = async () => {};
+// Logout
+exports.logoutController = async () => {
+    res.clearCookie('refreshToken')
+    return res.status(200).json({
+        success: true,
+        message: "Logged out successfully"
+    })
+};
