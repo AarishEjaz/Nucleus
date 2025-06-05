@@ -1,9 +1,29 @@
 import React from 'react'
-
+import {Box, Link, Typography,useTheme}  from '@mui/material'
+import { NavLink } from 'react-router-dom';
+import { themeSettings } from '../theme';
 const Navbar = () => {
+  const theme = useTheme();
   return (
-    <h1>Navbar</h1>
-  )
+
+    <Box
+      width={"100%"}
+      backgroundColor = {theme.palette.background.alt}
+      p="1rem "
+      textAlign={"center"}
+      sx={{ boxShadow: 3, mb: 2 }}
+    >
+      <Typography variant="h1" color={"primary"} fontWeight={"bold"}>
+        Nucleus
+      </Typography>
+      <NavLink to="/register" p={1}>
+        Sign Up
+      </NavLink>
+      <NavLink to="/login" p={1}>
+        Sign In
+      </NavLink>
+    </Box>
+  );
 }
 
 export default Navbar
