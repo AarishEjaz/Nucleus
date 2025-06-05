@@ -7,3 +7,14 @@ body {
 body {
   font-family: 'roboto', 'san-serif';
 }
+
+a{
+  color: rgb(83, 175, 218);
+  text-decoration: none;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+a:hover {
+  color: rgb(0, 4, 255);
+}

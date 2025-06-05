@@ -7,10 +7,10 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import { CssBaseline, ThemeProvider} from "@mui/material";
 import { useMemo } from 'react';
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import { themeSettings } from './theme';
 function App() {
-  const theme = useMemo(()=> createTheme(themeSettings))
+  const theme = useMemo(()=> createTheme(themeSettings(),[]))
   return (
     <>
       <ThemeProvider theme={theme}>

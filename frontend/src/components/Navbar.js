@@ -13,15 +13,15 @@ const Navbar = () => {
       textAlign={"center"}
       sx={{ boxShadow: 3, mb: 2 }}
     >
-      <Typography variant="h1" color={"primary"} fontWeight={"bold"}>
+      <Typography variant="h1" color= "primary" fontWeight={"bold"}>
         Nucleus
       </Typography>
-      <NavLink to="/register" p={1}>
+      <Link href="/register" p={1}>
         Sign Up
-      </NavLink>
-      <NavLink to="/login" p={1}>
+      </Link>
+      <Link href="/login" p={1}>
         Sign In
-      </NavLink>
+      </Link>
     </Box>
   );
 }
