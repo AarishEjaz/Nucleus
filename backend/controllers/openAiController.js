@@ -16,6 +16,12 @@ exports.summaryController = async(req,res) =>{
           max_tokens: 500,
           temperature: 0,
         });
+
+        if(data){
+            if(data.choices[0].text){
+                return res.status(200).json(data.choices[0].text)
+            }
+        }
     }catch(err){
         console.log(err)
         return res.status(404).json({

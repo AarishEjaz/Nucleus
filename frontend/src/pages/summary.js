@@ -29,9 +29,6 @@ const Summary = () => {
     e.preventDefault();
     try {
       await axios.post("/api/v1/auth/summary", { text });
-      toast.success("Login Successfully");
-      localStorage.setItem("authToken", true);
-      navigate("/");
     } catch (err) {
       console.log(error);
       if (err.response.data.error) {
@@ -59,7 +56,7 @@ const Summary = () => {
         </Alert>
       </Collapse>
       <form onSubmit={handleSubmit}>
-        <Typography variant="h3">Sign In</Typography>
+        <Typography variant="h3">Summarise text</Typography>
 
         <TextField
           label="email"
@@ -67,20 +64,9 @@ const Summary = () => {
           required
           margin="normal"
           fullWidth
-          value={email}
+          value={text}
           onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <TextField
-          label="password"
-          type="password"
-          required
-          margin="normal"
-          fullWidth
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
+            setText(e.target.value);
           }}
         />
         <Button
@@ -93,7 +79,7 @@ const Summary = () => {
           Sign In
         </Button>
         <Typography mt={2}>
-          Dont have an account ? <Link to="/register">Please Register</Link>
+          Not this tool ? <Link to="/">GO BACK</Link>
         </Typography>
       </form>
     </Box>
