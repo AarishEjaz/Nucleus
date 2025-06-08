@@ -4,7 +4,7 @@ class errorResponse extends Error {
         this.statusCode = statusCode
     }
 }
-
+module.exports = errorResponse;
 // const errorResponse = async(err, statusCode) =>{
 //     res.json({message:err.message, statusCode})
 // }

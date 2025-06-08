@@ -9,6 +9,7 @@ import { CssBaseline, ThemeProvider} from "@mui/material";
 import { useMemo } from 'react';
 import { createTheme } from '@mui/material/styles';
 import { themeSettings } from './theme';
+import Summary from './pages/Summary';
 function App() {
   const theme = useMemo(()=> createTheme(themeSettings(),[]))
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/summary" element={<Summary />} />
         </Routes>
       </ThemeProvider>
     </>

@@ -1,11 +1,27 @@
-import OpenAI from "openai";
-const dotenv = require('dotenv')
-dotenv.config()
-const openai = new OpenAI();
-const{Configuration, OpenAIApi} = require("openai")
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY
-})
+// const openai = require("openai");
+// const dotenv = require('dotenv')
+// dotenv.config()
+// const Openai = new OpenAI();
+// const{Configuration, OpenAIApi} = require("openai")
+
+// const { Configuration, OpenAIApi } = require("openai");
+// const dotenv = require("dotenv");
+// dotenv.config();
+
+
+
+// const configuration = new Configuration({
+//     apiKey: process.env.OPENAI_API_KEY
+// })
+
+// const openai = new OpenAIApi(configuration)
+
+const OpenAI = require("openai");
+require("dotenv").config();
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 exports.summaryController = async(req,res) =>{
     try{

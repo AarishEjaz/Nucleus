@@ -9,30 +9,30 @@ exports.sendToken = async(user,statusCode, res) =>{
     })
 }
 
-exports.registerController = async () =>{
+exports.registerController = async (req,res,next) =>{
     try{
         const { username, email, password, subscription, customerId } = req.body;
-        const existingEmail = User.findOne({emai:email})
+        const existingEmail = await User.findOne({email:email})
         if(existingEmail){
             return next(new errorResponse("Email is already registered", 500))
         }
-        await user.create({
+        const user =  await User.create({
             username:username,
             email:email,
             customerId:customerId,
             password: password,
 
         })
-        sendToken(user,201,res)
+        this.sendToken(user,201,res)
     }catch(error){
-        console.log(error.messsage)
+        console.error(error.messsage)
         next(error)
     }
 
 }
 
 //Login
-exports.loginController = async () => {
+exports.loginController = async (req,res,next) => {
     try{
         const {email,password} = req.body
 
@@ -44,11 +44,11 @@ exports.loginController = async () => {
             return next(new errorResponse(""))
         }
 
-        const isMatch = await User.matchPassword(password)
+        const isMatch = await user.matchPassword(password)
         if(!isMatch){
             return next( new errorResponse('Invalid Credientials'))
         }
-        sendToken(user,200,res)
+        this.sendToken(user,200,res)
 
 
 
@@ -58,7 +58,7 @@ exports.loginController = async () => {
 };
 
 // Logout
-exports.logoutController = async () => {
+exports.logoutController = async (req,res,next) => {
     res.clearCookie('refreshToken')
     return res.status(200).json({
         success: true,

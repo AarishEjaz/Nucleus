@@ -42,7 +42,7 @@ userSchema.pre('save', async function(next){
 
 // Check password
 
-userSchema.method.matchPassword = async function (password){
+userSchema.methods.matchPassword = async function (password){
     return await bcrypt.compare(password, this.password)
 }
 
@@ -54,7 +54,7 @@ userSchema.methods.getSignedToken = function(res){
     const refreshToken = JWT.sign(
       { id: this._id },
       process.env.JWT_REFRESH_TOKEN,
-      { expiresIn: JWT_REFRESH_EXPIRE }
+      { expiresIn: process.env.JWT_REFRESH_EXPIRE }
     );
 
     res.cookie(`refreshToken`,`${refreshToken}`, {maxAge:86400*7000, httpOnly:true})

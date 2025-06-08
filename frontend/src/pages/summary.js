@@ -11,6 +11,7 @@ import {
   Button,
   Alert,
   Collapse,
+  Card,
 } from "@mui/material";
 
 const Summary = () => {
@@ -28,7 +29,8 @@ const Summary = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/v1/auth/summary", { text });
+      const {data} = await axios.post("/api/v1/auth/summary", { text });
+      setSummary(data)
     } catch (err) {
       console.log(error);
       if (err.response.data.error) {
@@ -59,8 +61,8 @@ const Summary = () => {
         <Typography variant="h3">Summarise text</Typography>
 
         <TextField
-          label="email"
-          type="email"
+          label="text"
+          type="text"
           required
           margin="normal"
           fullWidth
@@ -82,6 +84,35 @@ const Summary = () => {
           Not this tool ? <Link to="/">GO BACK</Link>
         </Typography>
       </form>
+      {summary ? (
+        <Card
+          sx={{
+            mt: 4,
+            border: 1,
+            boxShadow: 0,
+            height: "500px",
+            borderRadius: 5,
+            backgroundColor: "natural.medium",
+            bgcolor: "background.default",
+          }}
+        >
+          <Typography>{summary}</Typography>
+        </Card>
+      ) : (
+        <Card
+          sx={{
+            mt: 4,
+            border: 1,
+            boxShadow: 0,
+            height: "500px",
+            borderRadius: 5,
+            backgroundColor: "natural.medium",
+            bgcolor: "background.default",
+          }}
+        >
+          <Typography variant="h5" color="natural.main" sx={{textAlign:'center', verticalAlign:"middel",lineHeight:"450px"}}>Summary will appear here</Typography>
+        </Card>
+      )}
     </Box>
   );
 };
