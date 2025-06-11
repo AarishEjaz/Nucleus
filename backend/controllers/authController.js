@@ -5,7 +5,7 @@ exports.sendToken = async(user,statusCode, res) =>{
     const token = user.getSignedToken(res)
     res.status(statusCode).json({
         success: true,
-        token,
+        token: token,
     })
 }
 

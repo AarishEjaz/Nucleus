@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import {Box,Typography, useTheme,TextField,Button, Alert,Collapse,useMediaQuery} from "@mui/material"
+import { Link } from 'react-router-dom'
+import toast,{Toaster} from 'react-hot-toast'
 
 const Register = () => {
   const theme = useTheme()
@@ -9,6 +11,15 @@ const Register = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    try{
+
+    }catch(error){
+      console.log(error.message)
+    }
+  }
   return (
     <Box
       width={isNotMobile ? "40%" : "80%"}
@@ -18,10 +29,10 @@ const Register = () => {
       sx={{ boxShadow: 5 }}
       backgroundColor={theme.palette.background.alt}
     >
-      <form>
+      <form onSubmit={handleSubmit}>
         <Typography variant="h3">Sign up</Typography>
         <TextField
-          lable="username"
+          label="username"
           required
           margin="normal"
           fullWidth
@@ -29,7 +40,7 @@ const Register = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
-          lable="email"
+          label="email"
           type="email"
           required
           margin="normal"
@@ -38,7 +49,7 @@ const Register = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
-          lable="password"
+          label="password"
           type="password"
           required
           margin="normal"
@@ -46,7 +57,10 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" fullWidth variant='contained' size="large" sx={{color:"white", mt:2}}>SignUp</Button>
+        <Typography mt={2}>
+          Already have an account? <Link to="/login">Please Login </Link>
+        </Typography>
       </form>
     </Box>
   );

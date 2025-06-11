@@ -10,12 +10,14 @@ import { useMemo } from 'react';
 import { createTheme } from '@mui/material/styles';
 import { themeSettings } from './theme';
 import Summary from './pages/Summary';
+import toast, { Toaster } from "react-hot-toast";
 function App() {
   const theme = useMemo(()=> createTheme(themeSettings(),[]))
   return (
     <>
       <ThemeProvider theme={theme}>
         <Navbar />
+        <Toaster />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
