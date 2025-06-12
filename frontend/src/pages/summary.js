@@ -29,8 +29,11 @@ const Summary = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post("/api/v1/auth/summary", { text });
-      setSummary(data)
+      const { data } = await axios.post(
+        "http://localhost:8080/api/v1/gemini/summary",
+        { text }
+      );
+      setSummary(data.message)
     } catch (err) {
       console.log(error);
       if (err.response.data.error) {
@@ -84,6 +87,8 @@ const Summary = () => {
           Not this tool ? <Link to="/">GO BACK</Link>
         </Typography>
       </form>
+
+
       {summary ? (
         <Card
           sx={{

@@ -7,7 +7,7 @@ const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 const authRoutes = require('./routes/authRoutes')
 const errorHandler = require('./middelwares/errorMiddleware')
-const openAiRoutes = require('./routes/openAiRoutes')
+const geminiRoutes = require('./routes/geminiRoutes')
 dotenv.config()
 
 
@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 8080
 
 //API Routes
 app.use("/api/v1/auth",authRoutes)
-app.use('/api/v1/openai', openAiRoutes)
+app.use('/api/v1/gemini', geminiRoutes)
 app.use(errorHandler)
 
 

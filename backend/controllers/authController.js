@@ -108,8 +108,8 @@ const registerController = async(req,res,next) =>{
         const {username, password, email} =  req.body
         const existingEmail = await User.findOne({email:email})
         if(existingEmail){
-            // return next(new errorResponse("Email is already registered", 500))
-            return res.status(403).json({message:"already exists"})
+            return next(new errorResponse("Email is already registered", 500))
+            // return res.status(403).json({message:"already exists"})
         }
 
         const user = await User.create({
@@ -127,4 +127,26 @@ const registerController = async(req,res,next) =>{
     }
 }
 
-module.exports = {sendToken, registerController}
+const loginController = async(req,res,next) =>{
+    try{
+        const {email, password} = req.body
+        if(!email||!password){
+            return next(new errorResponse("please provide both the fields", 401))
+        }
+        const user = await User.findOne({email:email})
+        if(!user){
+            return next(new errorResponse("user does not exist", 404))
+        }
+        const isMatch = await user.matchPassword(password)
+
+
+        if(!isMatch){
+            return next(new errorResponse("wrong password", 401))
+        }
+        sendToken(user,200,res)
+    }catch(error){
+        next(error.message)
+    }
+}
+
+module.exports = {sendToken, registerController, loginController}

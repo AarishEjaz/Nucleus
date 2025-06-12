@@ -33,7 +33,7 @@ const Login = () => {
       });
       toast.success("Login Successfully");
       localStorage.setItem("authToken", true);
-      navigate("/");
+      navigate("/summary");
     } catch (err) {
       console.log(error);
       if (err.response.data.error) {
