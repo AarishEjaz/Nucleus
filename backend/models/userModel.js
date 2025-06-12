@@ -58,6 +58,7 @@ userSchema.methods.getSignedToken = function(res){
     );
 
     res.cookie(`refreshToken`,`${refreshToken}`, {maxAge:86400*7000, httpOnly:true})
+
 }
 
 
