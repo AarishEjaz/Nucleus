@@ -1,13 +1,25 @@
 import React from 'react'
 import {Box, Link, Typography,useTheme}  from '@mui/material'
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import { themeSettings } from '../theme';
+import axios from "axios"
+import toast from 'react-hot-toast';
 const Navbar = () => {
   const theme = useTheme();
+  const navigate = useNavigate()
   const loggedIn = JSON.parse(localStorage.getItem('authToken'))
+  // const loggedIn = localStorage.setItem("authToken", JSON.stringify('authToken'));
 
   const handleLogout = async() =>{
+    try{
+      await axios.post("http://localhost:8080/api/v1/auth/logout");
+      localStorage.removeItem("authToken")
+      toast.success("Logout successful")
+      navigate('/login')
 
+    }catch(error){
+      console.log(error.message)
+    }
   }
   return (
     <Box
@@ -27,7 +39,7 @@ const Navbar = () => {
         </Link>
       ) : (
         <>
-                <Link href="/register" p={1}>
+        <Link href="/register" p={1}>
           Sign Up
         </Link>
         <Link href="/login" p={1}>

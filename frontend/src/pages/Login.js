@@ -27,13 +27,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/v1/auth/login", {
+     const {data} =  await axios.post("http://localhost:8080/api/v1/auth/login", {
         email,
         password,
       });
+      if(data.token.accessToken){
       toast.success("Login Successfully");
       localStorage.setItem("authToken", true);
       navigate("/summary");
+
+      }
     } catch (err) {
       console.log(error);
       if (err.response.data.error) {
