@@ -23,20 +23,18 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  //register ctrl
+  //login ctrl
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-     const {data} =  await axios.post("http://localhost:8080/api/v1/auth/login", {
+     await axios.post("http://localhost:8080/api/v1/auth/login", {
         email,
         password,
       });
-      if(data.token.accessToken){
       toast.success("Login Successfully");
       localStorage.setItem("authToken", true);
       navigate("/summary");
 
-      }
     } catch (err) {
       console.log(error);
       if (err.response.data.error) {

@@ -15,6 +15,7 @@ const Navbar = () => {
       await axios.post("http://localhost:8080/api/v1/auth/logout");
       localStorage.removeItem("authToken")
       toast.success("Logout successful")
+      console.log("authToken")
       navigate('/login')
 
     }catch(error){
