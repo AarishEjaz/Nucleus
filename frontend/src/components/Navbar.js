@@ -35,19 +35,23 @@ const Navbar = () => {
       </Typography>
 
       {loggedIn ? (
-        <Link href="/login" onClick={handleLogout} p={1}>
-          Logout
-        </Link>
+        <>
+          <Link href="/" p={1}>
+            Home
+          </Link>
+          <Link href="/login" onClick={handleLogout} p={1}>
+            Logout
+          </Link>
+        </>
       ) : (
         <>
-        <Link href="/register" p={1}>
-          Sign Up
-        </Link>
-        <Link href="/login" p={1}>
-          Sign In
-        </Link>
+          <Link href="/register" p={1}>
+            Sign Up
+          </Link>
+          <Link href="/login" p={1}>
+            Sign In
+          </Link>
         </>
-
       )}
     </Box>
   );
