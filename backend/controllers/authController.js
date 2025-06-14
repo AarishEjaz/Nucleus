@@ -100,7 +100,7 @@ const errorResponse = require('../utils/errorResponse')
 
 const sendToken = async(user,statusCode,res) =>{
     const token = user.getSignedToken(res)
-    res.status(statusCode).json({success:true, message:token})
+    res.status(statusCode).json({success:true,message:token})
 }
 
 const registerController = async(req,res,next) =>{
@@ -149,4 +149,12 @@ const loginController = async(req,res,next) =>{
     }
 }
 
-module.exports = {sendToken, registerController, loginController}
+const logoutController = async(req,res,next)=>{
+  res.clearCookie("refreshToken");
+      return res.status(200).json({
+          success: true,
+          message: "Logged out successfully"
+      })
+}
+
+module.exports = {sendToken, registerController, loginController, logoutController}
