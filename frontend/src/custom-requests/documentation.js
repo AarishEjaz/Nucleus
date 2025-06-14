@@ -14,7 +14,7 @@ import {
   Card,
 } from "@mui/material";
 
-const Summary = () => {
+const Docs = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   //media
@@ -22,7 +22,7 @@ const Summary = () => {
   // states
   const [text, setText] = useState("");
   const [error, setError] = useState("")
-  const [summary, setSummary] = useState("");
+  const [docs, setDocs] = useState("");
 
 
   //register ctrl
@@ -31,9 +31,9 @@ const Summary = () => {
     try {
       const { data } = await axios.post(
         "http://localhost:8080/api/v1/gemini/summary",
-        {text}
+        { text: `Make short and brief notes of the documentation i am giving with proper paragraphs and spacing  ${text}` }
       );
-      setSummary(data.message)
+      setDocs(data.message)
     } catch (err) {
       console.log(error);
       if (err.response.data.error) {
@@ -64,7 +64,7 @@ const Summary = () => {
         <Typography variant="h3">Summarise text</Typography>
 
         <TextField
-          label="text"
+          label="Documentation"
           type="text"
           required
           margin="normal"
@@ -81,7 +81,7 @@ const Summary = () => {
           size="large"
           sx={{ color: "white", mt: 2 }}
         >
-          Sign In
+          Summarize Docs
         </Button>
         <Typography mt={2}>
           Not this tool ? <Link to="/">GO BACK</Link>
@@ -89,7 +89,7 @@ const Summary = () => {
       </form>
 
 
-      {summary ? (
+      {docs ? (
         <Card
           sx={{
             mt: 4,
@@ -101,7 +101,7 @@ const Summary = () => {
             bgcolor: "background.default",
           }}
         >
-          <Typography>{summary}</Typography>
+          <Typography>{docs}</Typography>
         </Card>
       ) : (
         <Card
@@ -115,11 +115,11 @@ const Summary = () => {
             bgcolor: "background.default",
           }}
         >
-          <Typography variant="h5" color="natural.main" sx={{textAlign:'center', verticalAlign:"middel",lineHeight:"450px"}}>Summary will appear here</Typography>
+          <Typography variant="h5" color="natural.main" sx={{textAlign:'center', verticalAlign:"middel",lineHeight:"450px"}}>Docs will appear here</Typography>
         </Card>
       )}
     </Box>
   );
 };
 
-export default Summary;
+export default Docs;
