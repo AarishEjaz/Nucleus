@@ -14,25 +14,25 @@ import {
   Card,
 } from "@mui/material";
 
-const Docs = () => {
+const Brother = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   //media
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
   // states
   const [text, setText] = useState("");
-  const [error, setError] = useState("")
-  const [docs, setDocs] = useState("");
-
+  const [error, setError] = useState("");
+  const [thought, setThought] = useState("");
 
   //register ctrl
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/gemini/summary",{text}
+        "http://localhost:8080/api/v1/gemini/brother",
+        { text }
       );
-      setDocs(data.message)
+      setThought(data.message); //--------------------------------------------------------------------------------------
     } catch (err) {
       console.log(error);
       if (err.response.data.error) {
@@ -63,7 +63,7 @@ const Docs = () => {
         <Typography variant="h3">Summarise text</Typography>
 
         <TextField
-          label="Documentation"
+          label="What's on your mind" //---------------------------------------------------------------------------------------------
           type="text"
           required
           margin="normal"
@@ -80,15 +80,14 @@ const Docs = () => {
           size="large"
           sx={{ color: "white", mt: 2 }}
         >
-          Summarize Docs
+          Convey thought
         </Button>
         <Typography mt={2}>
           Not this tool ? <Link to="/">GO BACK</Link>
         </Typography>
       </form>
 
-
-      {docs ? (
+      {thought ? ( //----------------------------------------------------------------------------------------------------------------------
         <Card
           sx={{
             mt: 4,
@@ -100,7 +99,7 @@ const Docs = () => {
             bgcolor: "background.default",
           }}
         >
-          <Typography>{docs}</Typography>
+          <Typography>{thought}</Typography>
         </Card>
       ) : (
         <Card
@@ -114,11 +113,21 @@ const Docs = () => {
             bgcolor: "background.default",
           }}
         >
-          <Typography variant="h5" color="natural.main" sx={{textAlign:'center', verticalAlign:"middel",lineHeight:"450px"}}>Docs will appear here</Typography>
+          <Typography
+            variant="h5"
+            color="natural.main"
+            sx={{
+              textAlign: "center",
+              verticalAlign: "middel",
+              lineHeight: "450px",
+            }}
+          >
+            Docs will appear here
+          </Typography>
         </Card>
       )}
     </Box>
   );
 };
 
-export default Docs;
+export default Brother;

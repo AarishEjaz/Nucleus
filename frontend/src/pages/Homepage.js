@@ -152,6 +152,39 @@ const  Homepage = () => {
             </Stack>
           </Card>
         </Box>
+        {/* A friend */}
+        <Box p={2} onClick={handleClick}>
+          <Typography variant="h4" mb={2} fontWeight="bold">
+            Documentation Summary
+          </Typography>
+          <Card
+            onClick={() => navigate("/Brother")}
+            sx={{
+              boxShadow: 2,
+              borderRadius: 5,
+              height: 190,
+              width: 200,
+              "&:hover": {
+                border: 2,
+                boxShadow: 0,
+                borderColor: "primary.dark",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <DescriptionRounded
+              sx={{ fontSize: "80", color: "primary.main", mt: 2, ml: 2 }}
+            />
+            <Stack p={3} pt={0}>
+              <Typography fontWeight="bold" variant="h5">
+                Find a friend here
+              </Typography>
+              <Typography fontWeight="bold" variant="h6">
+                Tell your friend what's on your mind and have a chat
+              </Typography>
+            </Stack>
+          </Card>
+        </Box>
       </Box>
     </>
   );

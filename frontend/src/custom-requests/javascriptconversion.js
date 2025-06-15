@@ -30,8 +30,7 @@ const Js = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/gemini/summary",
-        { text: `Convert the given code into javascript use express or node if needed  ${text}` }
+        "http://localhost:8080/api/v1/gemini/vibe-code",{text}
       );
       setCode(data.message)                                         //--------------------------------------------------------------------------------------
     } catch (err) {

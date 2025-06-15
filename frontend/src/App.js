@@ -12,7 +12,7 @@ import { themeSettings } from './theme';
 import Summary from './pages/Summary';
 import toast, { Toaster } from "react-hot-toast";
 // import {Docs, Js} from './custom-requests/documentation';
-import {Docs, Js}from './custom-requests/request-index';
+import {Docs, Js, Brother}from './custom-requests/request-index';
 function App() {
   const theme = useMemo(()=> createTheme(themeSettings(),[]))
   return (
@@ -27,6 +27,7 @@ function App() {
           <Route path="/summary" element={<Summary />} />
           <Route path="/docs" element={<Docs />} />
           <Route path="/js-conversion" element={<Js />}/>
+          <Route path="/brother" element={<Brother />}/>
         </Routes>
       </ThemeProvider>
     </>
