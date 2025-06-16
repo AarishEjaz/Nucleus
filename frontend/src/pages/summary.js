@@ -30,8 +30,8 @@ const Summary = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/gemini/summary",
-        {text}
+        "https://nucleus-backend-udz6.onrender.com/api/v1/gemini/summary",
+        { text }
       );
       setSummary(data.message)
     } catch (err) {

@@ -29,7 +29,7 @@ const Brother = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/gemini/brother",
+        "https://nucleus-backend-udz6.onrender.com/api/v1/gemini/brother",
         { text }
       );
       setThought(data.message); //--------------------------------------------------------------------------------------

@@ -19,7 +19,7 @@ const Register = () => {
 
     try{
       await axios.post(
-        "http://localhost:8080/api/v1/auth/register",
+        "https://nucleus-backend-udz6.onrender.com/api/v1/auth/register",
         {
           username,
           email,
