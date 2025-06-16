@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 import axios from "axios";
 import {
   Box,
@@ -21,9 +20,8 @@ const Summary = () => {
   const isNotMobile = useMediaQuery("(min-width: 1000px)");
   // states
   const [text, setText] = useState("");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
   const [summary, setSummary] = useState("");
-
 
   //register ctrl
   const handleSubmit = async (e) => {
@@ -33,7 +31,7 @@ const Summary = () => {
         "https://nucleus-backend-udz6.onrender.com/api/v1/gemini/summary",
         { text }
       );
-      setSummary(data.message)
+      setSummary(data.message);
     } catch (err) {
       console.log(error);
       if (err.response.data.error) {
@@ -88,7 +86,6 @@ const Summary = () => {
         </Typography>
       </form>
 
-
       {summary ? (
         <Card
           sx={{
@@ -115,7 +112,17 @@ const Summary = () => {
             bgcolor: "background.default",
           }}
         >
-          <Typography variant="h5" color="natural.main" sx={{textAlign:'center', verticalAlign:"middel",lineHeight:"450px"}}>Summary will appear here</Typography>
+          <Typography
+            variant="h5"
+            color="natural.main"
+            sx={{
+              textAlign: "center",
+              verticalAlign: "middel",
+              lineHeight: "450px",
+            }}
+          >
+            Summary will appear here
+          </Typography>
         </Card>
       )}
     </Box>
