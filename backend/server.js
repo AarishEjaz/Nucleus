@@ -19,10 +19,7 @@ app.use(express.json());
 
 
 app.use(
-  cors({
-    origin: "https://nucleus-8n31.onrender.com/",
-    credentials: true,
-  })
+  cors()
 );
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(morgan("dev"))
