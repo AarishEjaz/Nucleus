@@ -12,7 +12,9 @@ const Navbar = () => {
 
   const handleLogout = async() =>{
     try{
-      await axios.post("http://localhost:8080/api/v1/auth/logout");
+      await axios.post(
+        "https://nucleus-backend-udz6.onrender.com/api/v1/auth/logout"
+      );
       localStorage.removeItem("authToken")
       toast.success("Logout successful")
       console.log("authToken")
