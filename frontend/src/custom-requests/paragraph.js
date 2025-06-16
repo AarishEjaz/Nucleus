@@ -27,7 +27,8 @@ const Paragraph = () =>{
 
 
 
-    const handleSubmit =async()=>{
+    const handleSubmit =async(e)=>{
+        e.preventDefault();
         try{
             const { data } = await axios.post(
               "https://nucleus-backend-udz6.onrender.com/api/v1/gemini/paragraph", {text}
