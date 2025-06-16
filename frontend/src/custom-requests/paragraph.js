@@ -11,42 +11,48 @@ import {
   Button,
   Alert,
   Collapse,
-  Card,
+  Card
 } from "@mui/material";
 
-const Js = () => {
-  const theme = useTheme();
-  const navigate = useNavigate();
-  //media
-  const isNotMobile = useMediaQuery("(min-width: 1000px)");
-  // states
-  const [text, setText] = useState("");
-  const [error, setError] = useState("")
-  const [code, setCode] = useState("");
+const Paragraph = () =>{
+
+      const theme = useTheme();
+      const navigate = useNavigate();
+      //media
+      const isNotMobile = useMediaQuery("(min-width: 1000px)");
+
+    const[para, setPara] = useState("")
+    const[error, setError] = useState("")
+    const[text, setText] = useState("")
 
 
-  //register ctrl
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        "https://nucleus-backend-udz6.onrender.com/api/v1/gemini/vibe-code",
-        { text }
-      );
-      setCode(data.message)                                         //--------------------------------------------------------------------------------------
-    } catch (err) {
-      console.log(error);
-      if (err.response.data.error) {
-        setError(err.response.data.error);
-      } else if (err.message) {
-        setError(err.message);
-      }
-      setTimeout(() => {
-        setError("");
-      }, 5000);
+
+    const handleSubmit =async()=>{
+        try{
+            const { data } = await axios.post(
+              "https://nucleus-backend-udz6.onrender.com/api/v1/gemini/paragraph", {text}
+            );
+            setPara(data.message)
+        }catch(err){
+                  if (err.response.data.error) {
+                    setError(err.response.data.error);
+                  } else if (err.message) {
+                    setError(err.message);
+                  }
+                  setTimeout(() => {
+                    setError("");
+                  }, 5000);
+        }
     }
-  };
-  return (
+
+
+
+
+
+
+
+
+    return (
     <Box
       width={isNotMobile ? "40%" : "80%"}
       p={"2rem"}
@@ -61,10 +67,10 @@ const Js = () => {
         </Alert>
       </Collapse>
       <form onSubmit={handleSubmit}>
-        <Typography variant="h3">instructions to Code </Typography>
+        <Typography variant="h3">Summarise text</Typography>
 
         <TextField
-          label="Code"                                     //---------------------------------------------------------------------------------------------
+          label="Enter the word"
           type="text"
           required
           margin="normal"
@@ -81,7 +87,7 @@ const Js = () => {
           size="large"
           sx={{ color: "white", mt: 2 }}
         >
-          Convert Code
+          Generate paragraph
         </Button>
         <Typography mt={2}>
           Not this tool ? <Link to="/">GO BACK</Link>
@@ -89,7 +95,7 @@ const Js = () => {
       </form>
 
 
-      {code ? ( //----------------------------------------------------------------------------------------------------------------------
+      {para ? (
         <Card
           sx={{
             mt: 4,
@@ -101,7 +107,7 @@ const Js = () => {
             bgcolor: "background.default",
           }}
         >
-          <Typography>{code}</Typography>
+          <Typography>{para}</Typography>
         </Card>
       ) : (
         <Card
@@ -115,11 +121,12 @@ const Js = () => {
             bgcolor: "background.default",
           }}
         >
-          <Typography variant="h5" color="natural.main" sx={{textAlign:'center', verticalAlign:"middel",lineHeight:"450px"}}>Code will appear here</Typography>
+          <Typography variant="h5" color="natural.main" sx={{textAlign:'center', verticalAlign:"middel",lineHeight:"450px"}}>Paragraph will appear here</Typography>
         </Card>
       )}
     </Box>
   );
 };
 
-export default Js;
+
+export default Paragraph;

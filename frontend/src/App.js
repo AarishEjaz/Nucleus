@@ -13,6 +13,7 @@ import { themeSettings } from './theme';
 import toast, { Toaster } from "react-hot-toast";
 // import {Docs, Js} from './custom-requests/documentation';
 import {Docs, Js, Brother}from './custom-requests/request-index';
+import Paragraph from './custom-requests/paragraph';
 function App() {
   const theme = useMemo(()=> createTheme(themeSettings(),[]))
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/docs" element={<Docs />} />
           <Route path="/js-conversion" element={<Js />} />
           <Route path="/brother" element={<Brother />} />
+          <Route path = "/paragraph-generation" element={<Paragraph />} />
         </Routes>
       </ThemeProvider>
     </>

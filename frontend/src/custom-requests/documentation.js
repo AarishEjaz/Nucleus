@@ -30,7 +30,7 @@ const Docs = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://nucleus-backend-udz6.onrender.com/api/v1/gemini/summary",
+        "https://nucleus-backend-udz6.onrender.com/api/v1/gemini/docs",
         { text }
       );
       setDocs(data.message)
@@ -61,7 +61,7 @@ const Docs = () => {
         </Alert>
       </Collapse>
       <form onSubmit={handleSubmit}>
-        <Typography variant="h3">Summarise text</Typography>
+        <Typography variant="h3">Documentation Summary</Typography>
 
         <TextField
           label="Documentation"
@@ -115,7 +115,7 @@ const Docs = () => {
             bgcolor: "background.default",
           }}
         >
-          <Typography variant="h5" color="natural.main" sx={{textAlign:'center', verticalAlign:"middel",lineHeight:"450px"}}>Docs will appear here</Typography>
+          <Typography variant="h5" color="natural.main" sx={{textAlign:'center', verticalAlign:"middel",lineHeight:"450px"}}>Summarized documentation will appear here</Typography>
         </Card>
       )}
     </Box>

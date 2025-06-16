@@ -60,7 +60,7 @@ const Brother = () => {
         </Alert>
       </Collapse>
       <form onSubmit={handleSubmit}>
-        <Typography variant="h3">Summarise text</Typography>
+        <Typography variant="h3">Hey Buddy</Typography>
 
         <TextField
           label="What's on your mind" //---------------------------------------------------------------------------------------------
@@ -122,7 +122,7 @@ const Brother = () => {
               lineHeight: "450px",
             }}
           >
-            Docs will appear here
+            Response will appear here
           </Typography>
         </Card>
       )}

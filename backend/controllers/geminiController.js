@@ -30,6 +30,30 @@ const javascriptController = async (req, res) => {
   }
 };
 
+const paraController = async (req, res) => {
+  try {
+    const { text } = req.body;
+    const prompt = `/* generate a paragraph for the given word or text \n${text}`;
+    const result = await model.generateContent(prompt);
+    console.log(result.response.text());
+    res.status(200).json({ message: result.response.text() });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const docsController = async (req, res) => {
+  try {
+    const { text } = req.body;
+    const prompt = `/* summarize the documentation in brief and mention the key points to increase the productivity of user \n${text}`;
+    const result = await model.generateContent(prompt);
+    console.log(result.response.text());
+    res.status(200).json({ message: result.response.text() });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 const brotherController = async (req, res) => {
   try {
     const { text } = req.body;
@@ -44,5 +68,4 @@ const brotherController = async (req, res) => {
 
 
 
-
-module.exports = {summaryController,javascriptController,brotherController}
+module.exports = {summaryController,javascriptController,brotherController,paraController,docsController}

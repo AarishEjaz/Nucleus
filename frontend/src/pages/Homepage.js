@@ -58,7 +58,7 @@ const  Homepage = () => {
             Paragraph Generation
           </Typography>
           <Card
-            onClick={() => navigate("/summary")}
+            onClick={() => navigate("/paragraph-generation")}
             sx={{
               boxShadow: 2,
               borderRadius: 5,
@@ -122,7 +122,7 @@ const  Homepage = () => {
         {/* javascript conversion */}
         <Box p={2} onClick={handleClick}>
           <Typography variant="h4" mb={2} fontWeight="bold">
-            Documentation Summary
+             Javascript tool
           </Typography>
           <Card
             onClick={() => navigate("/js-conversion")}
@@ -155,7 +155,7 @@ const  Homepage = () => {
         {/* A friend */}
         <Box p={2} onClick={handleClick}>
           <Typography variant="h4" mb={2} fontWeight="bold">
-            Documentation Summary
+            Friend Tool
           </Typography>
           <Card
             onClick={() => navigate("/Brother")}
@@ -185,6 +185,7 @@ const  Homepage = () => {
             </Stack>
           </Card>
         </Box>
+
       </Box>
     </>
   );
